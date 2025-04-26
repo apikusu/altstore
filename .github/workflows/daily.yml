@@ -5,10 +5,8 @@ on:
     push:
         branches:
             - main
+    workflow_dispatch:
 
-permissions:
-    pages: write
-    id-token: write
 
 jobs:
     create-source:
@@ -22,17 +20,19 @@ jobs:
               run: python generate-source.py
 
             - name: Upload GitHub Pages artifact
-              uses: actions/upload-pages-artifact@v1
+              id: deployment
+              uses: actions/upload-pages-artifact@v3
               with:
-                  path: ./res
+                path: ./res
 
     deploy:
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
         name: Deploy source to GitHub Pages
         needs: create-source
         runs-on: ubuntu-latest
-        permissions:
-            pages: write
-            id-token: write
         steps:
             - name: Deploy to GitHub Pages
-              uses: actions/deploy-pages@v1
+              id: deployment
+              uses: actions/deploy-pages@v4

@@ -7,7 +7,7 @@ source = {
     "name": "osu!",
     "subtitle": "rhythm is just a *click* away!",
     "description": "An AltStore and derivatives source for the rhythm game osu!.\n\nSource made by apix and hosted at https://apikusu.github.io/osu-altstore.\n\nUpdated daily at 04:30 UTC.\n",
-    "iconURL": "https://apikusu.github.io/osu-altsource/logo.png",
+    "iconURL": "https://apikusu.github.io/osu-altstore/logo.png",
     "website": "https://osu.ppy.sh",
     "featuredApps": [
         "sh.ppy.osulazer"
@@ -26,10 +26,10 @@ app_info = {
     "subtitle": "A free-to-win rhythm game. Rhythm is just a *click* away!",
     "localizedDescription": "This is the future – and final – iteration of the osu! game client which marks the beginning of an open era!\n\nCurrently known by and released under the release codename \"lazer\". As in sharper than cutting-edge.",
     "screenshots": [
-        "https://apikusu.github.io/osu-altsource/screenshots/iphone-1.jpg",
-        "https://apikusu.github.io/osu-altsource/screenshots/iphone-2.jpg",
-        "https://apikusu.github.io/osu-altsource/screenshots/iphone-3.jpg",
-        "https://apikusu.github.io/osu-altsource/screenshots/iphone-4.jpg",
+        "https://apikusu.github.io/osu-altstore/screenshots/iphone-1.jpg",
+        "https://apikusu.github.io/osu-altstore/screenshots/iphone-2.jpg",
+        "https://apikusu.github.io/osu-altstore/screenshots/iphone-3.jpg",
+        "https://apikusu.github.io/osu-altstore/screenshots/iphone-4.jpg",
     ],
     "versions": []
 }

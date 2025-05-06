@@ -1,1 +1,2 @@
-res/source.json
+res/**/source.json
+res/*/index.html

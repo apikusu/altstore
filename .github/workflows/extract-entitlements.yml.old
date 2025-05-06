@@ -1,0 +1,24 @@
+name: Extract Entitlements
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  extract-entitlements:
+    runs-on: macos-latest
+
+    steps:
+      - name: Download osu.iOS.ipa
+        run: |
+          curl -L -o osu.iOS.ipa https://github.com/ppy/osu/releases/download/2025.424.0/osu.iOS.ipa
+      - name: Extract .app file from .ipa
+        run: |
+          unzip -q osu.iOS.ipa -d extracted_ipa
+          mv extracted_ipa/Payload/*.app osu.app
+      - name: Print Entitlements
+        run: |
+          codesign -d --entitlements :- osu.app > entitlements.plist
+          cat entitlements.plist

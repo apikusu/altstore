@@ -20,8 +20,11 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v1
 
-            - name: Generate the source
-              run: python generate-source.py
+            - name: Generate the osu! source
+              run: python sources/osu.py
+
+            - name: Generate the Sonolus source
+              run: python sources/sonolus.py
 
             - name: Upload GitHub Pages artifact
               id: deployment

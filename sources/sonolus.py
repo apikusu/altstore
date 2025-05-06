@@ -3,7 +3,7 @@ import requests, json, re, ast
 source = {
     "name": "Sonolus",
     "subtitle": "Next Generation Mobile Rhythm Game",
-    "description": "An AltStore and derivatives source for the rhythm game Sonolus.\n\nSource made by apix and hosted at https://apikusu.github.io/osu-altstore.\n\nUpdated daily at 04:30 UTC.\n",
+    "description": "An AltStore and derivatives source for the rhythm game Sonolus.\n\nSource made by apix and hosted at https://apikusu.github.io/altstore.\n\nUpdated daily at 04:30 UTC.\n",
     "iconURL": "https://sonolus.com/icon.png",
     "website": "https://wiki.sonolus.com/",
     "featuredApps": [

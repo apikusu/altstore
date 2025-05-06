@@ -6,9 +6,8 @@ This readme is available in: [English](README.md) | **Japanese (日本語)**
 
 # osu! & Sonolus AltStore ソース
 
-![最新のiOSリリース（Sonolus）](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapikusu.github.io%2Faltstore%2Fsource.json&query=apps%5B0%5D.versions%5B0%5D.buildVersion&label=最新のiOSリリース&prefix=v)  
-![最新のosu!リリース](https://img.shields.io/github/v/release/ppy/osu?display_name=release&label=最新のosu!リリース&color=F964A7)  
-![最新のiOSリリース（osu!）](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapikusu.github.io%2Fosu-altstore%2Fsource.json&query=apps%5B0%5D.versions%5B0%5D.buildVersion&label=最新のiOSリリース&prefix=v)
+![最新のSonolusバージョン](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapikusu.github.io%2Faltstore%2Fsonolus&query=apps%5B0%5D.versions%5B0%5D.marketingVersion&label=Sonolusのバージョン)
+![最新のosu!バージョン（iOS）](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapikusu.github.io%2Faltstore%2Fosu&query=apps%5B0%5D.versions%5B0%5D.buildVersion&label=osu!のバージョン&color=F964A7)
 ![最終実行日時](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fapikusu%2Fosu-altstore%2Factions%2Fworkflows%2F158497856%2Fruns%3Fstatus%3Dcompleted%26per_page%3D1&query=workflow_runs%5B0%5D.updated_at&label=最終実行日時&color=dark_green)
 
 AltStore（または SideStore などの派生）を使って、iOS / iPadOS デバイスにリズムゲーム **osu!** と **Sonolus** を簡単にインストールするためのソースだよ。

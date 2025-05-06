@@ -1,90 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add osu! source to AltStore</title>
-    <link rel="icon" href="logo.png" type="image/png">
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            min-height: 100vh;
-            min-height: 100dvh;
-            font-size: 1.1em;
-            padding: 1em;
-            gap: 1em;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            box-sizing: border-box;
-        }
 
-        * {
-            margin: 0;
-            text-align: center;
-        }
-        
-        .wrapper {
-            display: flex;
-            gap: 1em;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .wrapper a {
-            color: inherit;
-            text-decoration: none;
-            width: 150px;
-            font-size: 1em;
-            padding: 1em;
-            padding-bottom: .5em;
-            background-color: rgba(193, 193, 193, .5);
-            border-radius: 17.544%;
-        }
-
-        code {
-            background-color: rgba(193, 193, 193, .5);
-            padding: 0 .2em;
-            border-radius: .3em;
-            word-break: break-all;
-        }
-
-        img {
-            width: 100%;
-            aspect-ratio: 1;
-            border-radius: 17.544%;
-        }
-        
-        a {
-            color: dodgerblue;
-        }
-
-        @media screen and (max-width: 640px) {
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Add osu! / Sonolus source to AltStore</title>
+        <link rel="icon" href="logo.png" type="image/png" />
+        <style>
             body {
-                font-size: revert;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                min-height: 100vh;
+                font-size: 1.1em;
+                padding: 1em;
+                gap: 2em;
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                box-sizing: border-box;
             }
-            
+
+            * {
+                margin: 0;
+                text-align: center;
+            }
+
+            section {
+                display: flex;
+                flex-direction: column;
+                gap: 1em;
+                width: 100%;
+                max-width: 500px;
+            }
+
+            h2 {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5em;
+                font-size: 1.4em;
+                margin-bottom: 0.5em;
+            }
+
+            h2 img {
+                width: 1.4em;
+                height: 1.4em;
+                border-radius: 0.3em;
+            }
+
+            .wrapper {
+                display: flex;
+                gap: 1em;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
             .wrapper a {
-                width: 100px;
-                font-size: 1rem;
+                color: inherit;
+                text-decoration: none;
+                width: 150px;
+                font-size: 1em;
+                padding: 1em;
+                padding-bottom: .5em;
+                background-color: rgba(193, 193, 193, .5);
+                border-radius: 17.544%;
             }
-        }
-    </style>
-</head>
-<body>
-    <h1>osu! AltStore source</h1>
-    <div class="wrapper">
-        <a href="altstore://source?url=https://apikusu.github.io/osu-altstore/source.json">
-            <img src="https://raw.githubusercontent.com/altstoreio/AltStore/refs/heads/marketplace/AltStore/Resources/Icons.xcassets/AppIcon.appiconset/AltStore-2.0.png" alt="AltStore logo" width="1024">
-            Add to AltStore
-        </a>
-        <a href="sidestore://source?url=https://apikusu.github.io/osu-altstore/source.json">
-            <img src="https://raw.githubusercontent.com/SideStore/assets/refs/heads/main/icon.png" alt="SideStore logo">
-            Add to SideStore
-        </a>
-    </div>
-    <p>Or add the source manually with the URL <code>https://apikusu.github.io/osu-altstore/source.json</code></p>
-    <p>Source made by <a href="https://github.com/apix0n" target="_blank">apix</a>, code available at <a href="https://github.com/apikusu/osu-altstore" target="_blank">@apikusu/osu-altstore</a></p>
-</body>
+
+            code {
+                background-color: rgba(193, 193, 193, .5);
+                padding: 0 .2em;
+                border-radius: .3em;
+                word-break: break-word;
+            }
+
+            img {
+                width: 100%;
+                aspect-ratio: 1;
+                border-radius: 17.544%;
+            }
+
+            a {
+                color: dodgerblue;
+            }
+
+            @media screen and (max-width: 640px) {
+                body {
+                    font-size: revert;
+                }
+
+                .wrapper a {
+                    width: 100px;
+                    font-size: 1rem;
+                }
+            }
+
+            hr {
+                width: 100%;
+                max-width: 500px;
+                border: none;
+                border-top: 2px solid rgba(193, 193, 193, .5);
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>osu! & Sonolus AltStore sources</h1>
+
+        <section>
+            <h2><img src="osu/logo.png" alt="osu! icon">osu!</h2>
+            <div class="wrapper">
+                <a href="altstore://source?url=https://apikusu.github.io/altstore/osu">
+                    <img src="https://raw.githubusercontent.com/altstoreio/AltStore/refs/heads/marketplace/AltStore/Resources/Icons.xcassets/AppIcon.appiconset/AltStore-2.0.png" alt="AltStore logo">
+                    Add to AltStore
+                </a>
+                <a href="sidestore://source?url=https://apikusu.github.io/altstore/osu">
+                    <img src="https://raw.githubusercontent.com/SideStore/assets/refs/heads/main/icon.png" alt="SideStore logo">
+                    Add to SideStore
+                </a>
+            </div>
+            <p>Or add the URL <code>https://apikusu.github.io/altstore/osu</code></p>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2><img src="https://sonolus.com/icon.png" alt="Sonolus icon">Sonolus</h2>
+            <div class="wrapper">
+                <a href="altstore://source?url=https://apikusu.github.io/altstore/sonolus">
+                    <img src="https://raw.githubusercontent.com/altstoreio/AltStore/refs/heads/marketplace/AltStore/Resources/Icons.xcassets/AppIcon.appiconset/AltStore-2.0.png" alt="AltStore logo">
+                    Add to AltStore
+                </a>
+                <a href="sidestore://source?url=https://apikusu.github.io/altstore/sonolus">
+                    <img src="https://raw.githubusercontent.com/SideStore/assets/refs/heads/main/icon.png" alt="SideStore logo">
+                    Add to SideStore
+                </a>
+            </div>
+            <p>Or add the URL <code>https://apikusu.github.io/altstore/sonolus</code></p>
+        </section>
+
+        <p>Source made by <a href="https://github.com/apix0n" target="_blank">apix</a>, code available at <a href="https://github.com/apikusu/altstore" target="_blank">@apikusu/altstore</a></p>
+    </body>
+
 </html>

@@ -23,10 +23,10 @@ app_info = {
     "subtitle": "Next Generation Mobile Rhythm Game",
     "localizedDescription": "Sonolus is a next generation Mobile Rhythm Game that aims to provide maximum freedom to players and level makers.\n\nWith a powerful and performant scripting system, you can create any rhythm game engine imaginable.\nWhether it's to replicate an existing game or to create an entirely different engine, you can do it all.",
     "screenshots": [
-        "https://apikusu.github.io/osu-altstore/screenshots/iphone-1.jpg",
-        "https://apikusu.github.io/osu-altstore/screenshots/iphone-2.jpg",
-        "https://apikusu.github.io/osu-altstore/screenshots/iphone-3.jpg",
-        "https://apikusu.github.io/osu-altstore/screenshots/iphone-4.jpg",
+        "https://apikusu.github.io/altstore/sonolus/screenshots/iphone-1.jpg",
+        "https://apikusu.github.io/altstore/sonolus/screenshots/iphone-2.jpg",
+        "https://apikusu.github.io/altstore/sonolus/screenshots/iphone-3.jpg",
+        "https://apikusu.github.io/altstore/sonolus/screenshots/iphone-4.jpg",
     ],
     "versions": []
 }

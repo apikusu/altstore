@@ -18,6 +18,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT }}
 
       - name: Set current date
         run: echo "DATE=$(date --rfc-3339=date)" >> $GITHUB_ENV

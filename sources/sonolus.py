@@ -91,6 +91,6 @@ def get_changelog(link_id):
 app_info["versions"].append(get_last_version())
 source["apps"].append(app_info)
 
-with open('res/sonolus/index.html', 'w') as file:
+with open('res/sonolus/index.json', 'w') as file:
     json.dump(source, file)
     print("Created source file")

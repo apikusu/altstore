@@ -8,7 +8,7 @@ on:
     workflow_dispatch:
 
 permissions:
-    contents: read
+    contents: write
     pages: write
     id-token: write
 
@@ -20,11 +20,21 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v1
 
+            - name: Set current date
+              run: echo "DATE=$(date --rfc-3339=date)" >> $GITHUB_ENV
+
             - name: Generate the osu! source
               run: python sources/osu.py
 
             - name: Generate the Sonolus source
               run: python sources/sonolus.py
+
+            - name: Commit updated sources to 'main' branch
+              uses: stefanzweifel/git-auto-commit-action@v5
+              with:
+                commit_message: Daily source creation (${{ env.DATE }})
+                file_pattern: res/**/index.json
+                commit_author: "GitHub Actions <41898282+github-actions[bot]@users.noreply.github.com>"
 
             - name: Upload GitHub Pages artifact
               id: deployment

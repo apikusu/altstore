@@ -49,7 +49,7 @@ def get_last_release():
                 break
         else:
             print("osu.iOS.ipa not found in the latest release assets.")
-            exit(1)
+            exit(0)
         print("Last release is", version)
         return {
             "version": "1.0",
@@ -125,6 +125,6 @@ try:
 except Exception as e:
     print(f"Failed querying osu!web API services: {e}")
 
-with open('res/osu/index.html', 'w') as file:
+with open('res/osu/index.json', 'w') as file:
     json.dump(source, file)
     print("Created source file")

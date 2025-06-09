@@ -13,6 +13,7 @@ permissions:
 
 jobs:
   create-source:
+    if: ${{ github.actor != 'github-actions[bot]' }}
     name: Create sources
     runs-on: ubuntu-latest
     steps:

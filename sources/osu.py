@@ -46,29 +46,38 @@ def get_last_release():
                 size = asset["size"]
                 update_time = asset["updated_at"]
                 changelog = latest_release["body"]
-                break
-        else:
-            print("osu.iOS.ipa not found in the latest release assets.")
+                print("Last release is", version)
+                return {
+                    "version": "1.0",
+                    "buildVersion": version,
+                    "marketingVersion": version,
+                    "date": update_time,
+                    "downloadURL": download_url,
+                    "size": size,
+                    "minOSVersion": "13.4",
+                    "localizedDescription": changelog,
+                    # "appPermissions": {
+                    #     "entitlements": ["beta-reports-active", "get-task-allow"],
+                    #     "privacy": {
+                    #         "NSCameraUsageDescription": "osu! doesn't require camera access.",
+                    #         "NSMicrophoneUsageDescription": "osu! doesn't require microphone access.",
+                    #         "NSBluetoothAlwaysUsageDescription": "osu! doesn't require Bluetooth access.",
+                    #     }
+                    # }
+                }
+        
+        # If no iOS release found, try reading from local file
+        print("osu.iOS.ipa not found in the latest release assets, checking local file...")
+        try:
+            with open('./res/osu/index.json', 'r') as file:
+                local_source = json.load(file)
+                if local_source["apps"] and local_source["apps"][0]["versions"]:
+                    last_version = local_source["apps"][0]["versions"][0]
+                    print("Using last known version:", last_version["buildVersion"])
+                    return last_version
+        except Exception as e:
+            print(f"Failed to read local file: {e}")
             exit(0)
-        print("Last release is", version)
-        return {
-            "version": "1.0",
-            "buildVersion": version,
-            "marketingVersion": version,
-            "date": update_time,
-            "downloadURL": download_url,
-            "size": size,
-            "minOSVersion": "13.4",
-            "localizedDescription": changelog,
-            # "appPermissions": {
-            #     "entitlements": ["beta-reports-active", "get-task-allow"],
-            #     "privacy": {
-            #         "NSCameraUsageDescription": "osu! doesn't require camera access.",
-            #         "NSMicrophoneUsageDescription": "osu! doesn't require microphone access.",
-            #         "NSBluetoothAlwaysUsageDescription": "osu! doesn't require Bluetooth access.",
-            #     }
-            # }
-        }
     else:
         print(f"Failed to fetch the latest release: {response.status_code}")
         exit(1)
@@ -111,7 +120,7 @@ def get_random_background():
         }
 
         source["headerURL"] = data["url"]
-        source["description"] += f"\nBanner/header:\n- Artist: {data["artist_username"]} ({data["artist_profile_link"]})\n- URL: {data['url']}"
+        source["description"] += f"\nBanner/header:\n- Artist: {data['artist_username']} ({data['artist_profile_link']})\n- URL: {data['url']}"
     else:
         print(f"Failed to fetch seasonal backgrounds: {response.status_code}")
     print("Got background", data["url"], "of user", data["artist_username"], data["artist_profile_link"])

@@ -21,6 +21,9 @@ jobs:
 
       - name: Set current date
         run: echo "DATE=$(date --rfc-3339=date)" >> $GITHUB_ENV
+      
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
 
       - name: Generate the osu! source
         run: python sources/osu.py || true

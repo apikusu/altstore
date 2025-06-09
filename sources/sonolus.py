@@ -1,4 +1,5 @@
 import requests, json, re, ast
+from bs4 import BeautifulSoup
 
 source = {
     "name": "Sonolus",
@@ -32,21 +33,20 @@ app_info = {
 }
 
 def get_last_version():
-    response = requests.get("https://raw.githubusercontent.com/Sonolus/wiki/refs/heads/main/.vitepress/version.ts")
+    response = requests.get("https://wiki.sonolus.com/release-notes/")
     if response.status_code != 200:
         print(f"Failed to fetch version file: {response.status_code}")
         exit(1)
-
     content = response.text
-    match = re.search(r'export\s+const\s+version\s*=\s*({[^}]*})', content, re.DOTALL)
-    if not match:
-        print("Could not find 'version' object in the file.")
-        exit(1)
+    soup = BeautifulSoup(content, 'html.parser')
+    
+    # find the a tag with href ./versions/ and extract the text and href
+    version_link = soup.find('a', href=re.compile(r'^/release-notes/versions/'))
+    version_dict = {}
+    version_dict["link"] = version_link['href'].split('/')[-1]
+    version_dict["title"] = version_link.text.strip()
 
-    js_obj = match.group(1)
-    js_obj_clean = re.sub(r'(\w+):', r'"\1":', js_obj)  # key: -> "key":
-    version_dict = ast.literal_eval(js_obj_clean)
-    print("Last release is", version_dict["title"])
+    print("Last release is", version_dict["title"], "with id", version_dict["link"])
 
     download_url = "https://download.sonolus.com/Sonolus_" + version_dict["link"] + ".ipa"
     size = int(requests.head(download_url).headers.get('Content-Length', '0'))

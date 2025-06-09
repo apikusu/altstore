@@ -6,7 +6,7 @@ This readme is available in: **English** | [Japanese (日本語)](README_ja.md)
 
 ![Last Sonolus version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapikusu.github.io%2Faltstore%2Fsonolus&query=apps%5B0%5D.versions%5B0%5D.marketingVersion&label=Sonolus%20version)
 ![Last iOS release for Sonolus](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapikusu.github.io%2Faltstore%2Fosu&query=apps%5B0%5D.versions%5B0%5D.buildVersion&label=osu!%20version&color=F964A7)
-![Last run](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2Fapikusu%2Fosu-altstore%2Factions%2Fworkflows%2F158497856%2Fruns%3Fstatus%3Dcompleted%26per_page%3D1&query=workflow_runs%5B0%5D.updated_at&label=last%20run&color=dark_green)
+![Last run](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepositories%2F973253992%2Factions%2Fworkflows%2F158497856%2Fruns%3Fstatus%3Dcompleted%26per_page%3D1&query=%24.workflow_runs%5B0%5D.updated_at&label=last%20run&color=dark_green)
 
 An AltStore (and derivatives like SideStore) source to easily install the rhythm games **osu!** and **Sonolus** on iOS/iPadOS devices.
 

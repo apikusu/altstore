@@ -18,7 +18,9 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repository
-              uses: actions/checkout@v1
+              uses: actions/checkout@v4
+              with:
+                ref: ${{ github.head_ref }}
 
             - name: Set current date
               run: echo "DATE=$(date --rfc-3339=date)" >> $GITHUB_ENV

@@ -10,6 +10,7 @@ on:
       - 'sources/**'
       - 'res/**/*{.png,.jpg,.jpeg,.html}'
       - 'requirements.txt'
+      - '.github/workflows/*'
   workflow_dispatch:
 
 permissions:

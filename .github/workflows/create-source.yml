@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   create-source:
-    name: Generate Repository
+    name: Create sources
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository

@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   deploy:
-    name: Deploy source to GitHub Pages
+    name: Deploy sources to GitHub Pages
     runs-on: ubuntu-latest
     environment:
       name: github-pages

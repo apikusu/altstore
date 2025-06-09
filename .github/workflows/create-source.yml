@@ -6,6 +6,10 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'sources/**'
+      - 'res/**/*{.png,.jpg,.jpeg,.html}'
+      - 'requirements.txt'
   workflow_dispatch:
 
 permissions:
@@ -13,7 +17,6 @@ permissions:
 
 jobs:
   create-source:
-    if: github.actor != 'github-actions[bot]'
     name: Create sources
     runs-on: ubuntu-latest
     steps:

@@ -79,7 +79,7 @@ def get_last_version():
 
 def get_change_time():
     try:
-        response = requests.get("https://api.github.com/repos/Sonolus/wiki/commits?path=.vitepress/version.ts&page=1&per_page=1")
+        response = requests.get("https://api.github.com/repos/Sonolus/wiki/commits?path=.vitepress/version.ts&page=1&per_page=1&sha=prod")
         if response.status_code != 200:
             print(f"Failed to fetch commit history: {response.status_code}")
         return response.json()[0]["commit"]["committer"]["date"]
@@ -88,7 +88,7 @@ def get_change_time():
         return datetime.datetime.now().isoformat()
 
 def get_changelog(link_id):
-    response = requests.get(f"https://raw.githubusercontent.com/Sonolus/wiki/refs/heads/main/src/en/release-notes/versions/{link_id}.md")
+    response = requests.get(f"https://raw.githubusercontent.com/Sonolus/wiki/refs/heads/prod/src/en/release-notes/versions/{link_id}.md")
     if response.status_code != 200:
         print(f"Failed to fetch changelog: {response.status_code}")
         return None

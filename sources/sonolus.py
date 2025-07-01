@@ -1,4 +1,4 @@
-import requests, json, re, ast
+import requests, json, re, datetime
 from bs4 import BeautifulSoup
 
 source = {
@@ -78,11 +78,14 @@ def get_last_version():
     }
 
 def get_change_time():
-    response = requests.get("https://api.github.com/repos/Sonolus/wiki/commits?path=.vitepress/version.ts&page=1&per_page=1")
-    if response.status_code != 200:
-        print(f"Failed to fetch commit history: {response.status_code}")
-        return None
-    return response.json()[0]["commit"]["committer"]["date"]
+    try:
+        response = requests.get("https://api.github.com/repos/Sonolus/wiki/commits?path=.vitepress/version.ts&page=1&per_page=1")
+        if response.status_code != 200:
+            print(f"Failed to fetch commit history: {response.status_code}")
+        return response.json()[0]["commit"]["committer"]["date"]
+    except Exception as e:
+        print(f"Exception occurred: {e}")
+        return datetime.datetime.now().isoformat()
 
 def get_changelog(link_id):
     response = requests.get(f"https://raw.githubusercontent.com/Sonolus/wiki/refs/heads/main/src/en/release-notes/versions/{link_id}.md")

@@ -61,7 +61,14 @@ def get_last_version():
         "minOSVersion": "12.0",
         "localizedDescription": get_changelog(version_dict["link"]),
         "appPermissions": {
-            "entitlements": [],
+            "entitlements": [
+                 "com.apple.developer.associated-domains",
+                 "com.apple.developer.ubiquity-container-identifiers",
+                 "com.apple.developer.icloud-container-environment",
+                 "com.apple.developer.icloud-container-identifiers",
+                 "com.apple.developer.icloud-services",
+                 "beta-reports-active"
+            ],
             "privacy": {
                 "NSPhotoLibraryAddUsageDescription": "Sonolus requires access to gallery to read QR codes.",
                 "NSPhotoLibraryUsageDescription": "Sonolus requires access to gallery to read QR codes.",

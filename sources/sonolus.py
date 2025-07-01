@@ -29,6 +29,21 @@ app_info = {
         "https://apikusu.github.io/altstore/sonolus/screenshots/iphone-3.jpg",
         "https://apikusu.github.io/altstore/sonolus/screenshots/iphone-4.jpg",
     ],
+    "appPermissions": {
+        "entitlements": [
+             "com.apple.developer.associated-domains",
+             "com.apple.developer.ubiquity-container-identifiers",
+             "com.apple.developer.icloud-container-environment",
+             "com.apple.developer.icloud-container-identifiers",
+             "com.apple.developer.icloud-services",
+             "beta-reports-active"
+        ],
+        "privacy": {
+            "NSPhotoLibraryAddUsageDescription": "Sonolus requires access to gallery to read QR codes.",
+            "NSPhotoLibraryUsageDescription": "Sonolus requires access to gallery to read QR codes.",
+            "NSCameraUsageDescription": "Sonolus requires access to camera to read QR codes."
+        }
+    },
     "versions": []
 }
 
@@ -60,21 +75,6 @@ def get_last_version():
         "size": size,
         "minOSVersion": "12.0",
         "localizedDescription": get_changelog(version_dict["link"]),
-        "appPermissions": {
-            "entitlements": [
-                 "com.apple.developer.associated-domains",
-                 "com.apple.developer.ubiquity-container-identifiers",
-                 "com.apple.developer.icloud-container-environment",
-                 "com.apple.developer.icloud-container-identifiers",
-                 "com.apple.developer.icloud-services",
-                 "beta-reports-active"
-            ],
-            "privacy": {
-                "NSPhotoLibraryAddUsageDescription": "Sonolus requires access to gallery to read QR codes.",
-                "NSPhotoLibraryUsageDescription": "Sonolus requires access to gallery to read QR codes.",
-                "NSCameraUsageDescription": "Sonolus requires access to camera to read QR codes."
-            }
-        }
     }
 
 def get_change_time():

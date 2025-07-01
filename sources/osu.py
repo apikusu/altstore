@@ -31,6 +31,14 @@ app_info = {
         "https://apikusu.github.io/altstore/osu/screenshots/iphone-3.jpg",
         "https://apikusu.github.io/altstore/osu/screenshots/iphone-4.jpg",
     ],
+    "appPermissions": {
+        "entitlements": ["beta-reports-active", "get-task-allow"],
+        "privacy": {
+            "NSCameraUsageDescription": "osu! doesn't require camera access.",
+            "NSMicrophoneUsageDescription": "osu! doesn't require microphone access.",
+            "NSBluetoothAlwaysUsageDescription": "osu! doesn't require Bluetooth access.",
+        }
+    },
     "versions": []
 }
 
@@ -56,14 +64,6 @@ def get_last_release():
                     "size": size,
                     "minOSVersion": "13.4",
                     "localizedDescription": changelog,
-                    # "appPermissions": {
-                    #     "entitlements": ["beta-reports-active", "get-task-allow"],
-                    #     "privacy": {
-                    #         "NSCameraUsageDescription": "osu! doesn't require camera access.",
-                    #         "NSMicrophoneUsageDescription": "osu! doesn't require microphone access.",
-                    #         "NSBluetoothAlwaysUsageDescription": "osu! doesn't require Bluetooth access.",
-                    #     }
-                    # }
                 }
         
         # If no iOS release found, try reading from local file

@@ -2,7 +2,7 @@ name: Create source (daily job)
 
 on:
   schedule:
-    - cron: "30 4 * * *"
+    - cron: "30 0,6,12,18 * * *"
   push:
     branches:
       - main

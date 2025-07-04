@@ -6,7 +6,7 @@ repo_name = "osu"
 source = {
     "name": "osu!",
     "subtitle": "rhythm is just a *click* away!",
-    "description": "An AltStore and derivatives source for the rhythm game osu!.\n\nSource made by apix and hosted at https://apikusu.github.io/altstore.\n\nUpdated daily at 04:30 UTC.\n",
+    "description": "An AltStore and derivatives source for the rhythm game osu!.\n\nSource made by apix and hosted at https://apikusu.github.io/altstore.\n\nUpdated daily every 6 hours from 00:30 UTC.\n",
     "iconURL": "https://apikusu.github.io/altstore/osu/logo.png",
     "website": "https://osu.ppy.sh",
     "featuredApps": [
@@ -42,12 +42,21 @@ app_info = {
     "versions": []
 }
 
-def get_last_release():
+def get_last_release_and_versions():
+    versions = []
+    # Try to read old versions from the existing index.json
+    try:
+        with open('res/osu/index.json', 'r') as file:
+            local_source = json.load(file)
+            if local_source["apps"] and local_source["apps"][0]["versions"]:
+                versions = local_source["apps"][0]["versions"]
+    except Exception:
+        pass  # No old file or error reading, just start with empty
+
     response = requests.get(f"https://api.github.com/repos/{repo_author}/{repo_name}/releases/latest")
     if response.status_code == 200:
         latest_release = response.json()
         version = latest_release["tag_name"]
-        # find osu.iOS.ipa in assets
         for asset in latest_release["assets"]:
             if "osu.iOS.ipa" in asset["name"]:
                 download_url = asset["browser_download_url"]
@@ -55,7 +64,7 @@ def get_last_release():
                 update_time = asset["updated_at"]
                 changelog = latest_release["body"]
                 print("Last release is", version)
-                return {
+                new_version = {
                     "version": "1.0",
                     "buildVersion": version,
                     "marketingVersion": version,
@@ -65,22 +74,16 @@ def get_last_release():
                     "minOSVersion": "13.4",
                     "localizedDescription": changelog,
                 }
-        
-        # If no iOS release found, try reading from local file
+                # Only prepend if not already present
+                if not any(v.get("buildVersion") == version for v in versions):
+                    versions.insert(0, new_version)
+                return versions
+        # If no iOS release found, just return old versions
         print("osu.iOS.ipa not found in the latest release assets, checking local file...")
-        try:
-            with open('./res/osu/index.json', 'r') as file:
-                local_source = json.load(file)
-                if local_source["apps"] and local_source["apps"][0]["versions"]:
-                    last_version = local_source["apps"][0]["versions"][0]
-                    print("Using last known version:", last_version["buildVersion"])
-                    return last_version
-        except Exception as e:
-            print(f"Failed to read local file: {e}")
-            exit(0)
+        return versions
     else:
         print(f"Failed to fetch the latest release: {response.status_code}")
-        exit(1)
+        return versions
 
 def get_news():
     response = requests.get("https://osu.ppy.sh/api/v2/news?limit=8")
@@ -125,7 +128,7 @@ def get_random_background():
         print(f"Failed to fetch seasonal backgrounds: {response.status_code}")
     print("Got background", data["url"], "of user", data["artist_username"], data["artist_profile_link"])
 
-app_info["versions"].append(get_last_release())
+app_info["versions"] = get_last_release_and_versions()
 source["apps"].append(app_info)
 
 try:

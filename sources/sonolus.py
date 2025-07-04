@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 source = {
     "name": "Sonolus",
     "subtitle": "Next Generation Mobile Rhythm Game",
-    "description": "An AltStore and derivatives source for the rhythm game Sonolus.\n\nSource made by apix and hosted at https://apikusu.github.io/altstore.\n\nUpdated daily at 04:30 UTC.\n",
+    "description": "An AltStore and derivatives source for the rhythm game Sonolus.\n\nSource made by apix and hosted at https://apikusu.github.io/altstore.\n\nUpdated daily every 6 hours from 00:30 UTC.\n",
     "iconURL": "https://sonolus.com/icon.png",
     "website": "https://wiki.sonolus.com/",
     "featuredApps": [
@@ -47,15 +47,23 @@ app_info = {
     "versions": []
 }
 
-def get_last_version():
+def get_last_version_and_versions():
+    versions = []
+    # Try to read old versions from the existing index.json
+    try:
+        with open('res/sonolus/index.json', 'r') as file:
+            local_source = json.load(file)
+            if local_source["apps"] and local_source["apps"][0]["versions"]:
+                versions = local_source["apps"][0]["versions"]
+    except Exception:
+        pass  # No old file or error reading, just start with empty
+
     response = requests.get("https://wiki.sonolus.com/release-notes/")
     if response.status_code != 200:
         print(f"Failed to fetch version file: {response.status_code}")
-        exit(1)
+        return versions
     content = response.text
     soup = BeautifulSoup(content, 'html.parser')
-    
-    # find the a tag with href ./versions/ and extract the text and href
     version_link = soup.find('a', href=re.compile(r'^/release-notes/versions/'))
     version_dict = {}
     version_dict["link"] = version_link['href'].split('/')[-1]
@@ -66,7 +74,7 @@ def get_last_version():
     download_url = "https://download.sonolus.com/Sonolus_" + version_dict["link"] + ".ipa"
     size = int(requests.head(download_url).headers.get('Content-Length', '0'))
 
-    return {
+    new_version = {
         "version": version_dict['title'].split(' ')[0],
         "buildVersion": "1",
         "marketingVersion": version_dict["title"],
@@ -76,6 +84,10 @@ def get_last_version():
         "minOSVersion": "12.0",
         "localizedDescription": get_changelog(version_dict["link"]),
     }
+    # Only prepend if not already present (by marketingVersion)
+    if not any(v.get("marketingVersion") == new_version["marketingVersion"] for v in versions):
+        versions.insert(0, new_version)
+    return versions
 
 def get_change_time():
     try:
@@ -98,7 +110,7 @@ def get_changelog(link_id):
 
     return content
 
-app_info["versions"].append(get_last_version())
+app_info["versions"] = get_last_version_and_versions()
 source["apps"].append(app_info)
 
 with open('res/sonolus/index.json', 'w') as file:

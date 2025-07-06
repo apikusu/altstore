@@ -1,4 +1,4 @@
-import requests, json, re, datetime
+import requests, json, re, datetime, random
 from bs4 import BeautifulSoup
 
 source = {
@@ -109,6 +109,31 @@ def get_changelog(link_id):
     content = '\n'.join(content.splitlines()[4:])
 
     return content
+
+def get_random_theme_background():
+    response = requests.get("https://content.sonolus.com/info.json")
+    if response.status_code == 200:
+        rjson = response.json()
+        backgrounds = [
+            theme["background"]["url"]
+            for theme in rjson.get("themes", [])
+            if "background" in theme and "url" in theme["background"]
+        ]
+        if backgrounds:
+            chosen_url = random.choice(backgrounds)
+            print("Random background URL:", chosen_url)
+            source["headerURL"] = 'https://content.sonolus.com' + chosen_url
+        else:
+            print("No backgrounds found in themes.")
+            return None
+    else:
+        print(f"Failed to fetch themes: {response.status_code}")
+        return None
+
+try:
+    get_random_theme_background()
+except Exception as e:
+    print(f"Failed querying Sonolus API: {e}")
 
 app_info["versions"] = get_last_version_and_versions()
 source["apps"].append(app_info)

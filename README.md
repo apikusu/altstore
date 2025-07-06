@@ -21,10 +21,16 @@ An AltStore (and derivatives like SideStore) source to easily install the rhythm
 
 2. Go back to AltStore, install **osu!** or **Sonolus** from either the Sources tab or the Browse tab.
 
-## Bonus (osu!)
+## Bonus
+
+### osu!
 
 - The source header background is rolling from osu!'s Seasonal Backgrounds,
 - Displays the latest 8 news posts from **osu!**'s official website.
+
+### Sonolus
+
+- The source header background is rolling from the different backgrounds of the themes.
 
 ## Thanks
 

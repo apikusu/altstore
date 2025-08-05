@@ -76,12 +76,12 @@ def get_last_version_and_versions():
 
     new_version = {
         "version": version_dict['title'].split(' ')[0],
-        "buildVersion": "1",
+        "buildVersion": "2",
         "marketingVersion": version_dict["title"],
         "date": get_change_time(),
         "downloadURL": download_url,
         "size": size,
-        "minOSVersion": "12.0",
+        "minOSVersion": "13.0",
         "localizedDescription": get_changelog(version_dict["link"]),
     }
     # Only prepend if not already present (by marketingVersion)

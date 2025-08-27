@@ -43,4 +43,4 @@ jobs:
         with:
           commit_message: Daily source creation (${{ env.DATE }})
           file_pattern: res/**/index.json
-          commit_author: "GitHub Actions <41898282+github-actions[bot]@users.noreply.github.com>"
+          commit_author: "apixbot (GHA // @apikusu/altstore) <228819170+apixbot@users.noreply.github.com>"

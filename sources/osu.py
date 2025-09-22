@@ -6,7 +6,7 @@ repo_name = "osu"
 source = {
     "name": "osu!",
     "subtitle": "rhythm is just a *click* away!",
-    "description": "An AltStore and derivatives source for the rhythm game osu!.\n\nSource made by apix and hosted at https://apikusu.github.io/altstore.\n\nUpdated daily every 6 hours from 00:30 UTC.\n",
+    "description": "An AltStore and derivatives source for the rhythm game osu!.\n\nSource made by apix and hosted at https://apikusu.github.io/altstore.\n\nUpdated daily at 00:30 and 12:30 UTC.\n",
     "iconURL": "https://apikusu.github.io/altstore/osu/logo.png",
     "website": "https://osu.ppy.sh",
     "featuredApps": [

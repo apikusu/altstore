@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 source = {
     "name": "Sonolus",
     "subtitle": "Next Generation Mobile Rhythm Game",
-    "description": "An AltStore and derivatives source for the rhythm game Sonolus.\n\nSource made by apix and hosted at https://apikusu.github.io/altstore.\n\nUpdated daily every 6 hours from 00:30 UTC.\n",
+    "description": "An AltStore and derivatives source for the rhythm game Sonolus.\n\nSource made by apix and hosted at https://apikusu.github.io/altstore.\n\nThis source will not be updated.\n",
     "iconURL": "https://sonolus.com/icon.png",
     "website": "https://wiki.sonolus.com/",
     "featuredApps": [

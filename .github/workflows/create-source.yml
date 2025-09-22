@@ -2,7 +2,7 @@ name: Create source (daily job)
 
 on:
   schedule:
-    - cron: "30 0,6,12,18 * * *"
+    - cron: "30 0,12 * * *"
   push:
     branches:
       - main
@@ -35,12 +35,12 @@ jobs:
       - name: Generate the osu! source
         run: python sources/osu.py || true
 
-      - name: Generate the Sonolus source
-        run: python sources/sonolus.py
+      # - name: Generate the Sonolus source
+      #  run: python sources/sonolus.py
 
       - name: Commit updated sources to 'main' branch
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: Daily source creation (${{ env.DATE }})
+          commit_message: Source creation (${{ env.DATE }})
           file_pattern: res/**/index.json
           commit_author: "apixbot (GHA // @apikusu/altstore) <228819170+apixbot@users.noreply.github.com>"

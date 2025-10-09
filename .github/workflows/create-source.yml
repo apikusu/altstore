@@ -43,4 +43,6 @@ jobs:
         with:
           commit_message: Source creation (${{ env.DATE }})
           file_pattern: res/**/index.json
+          commit_user_name: apixbot (GHA // @apikusu/altstore)
+          commit_user_email: 228819170+apixbot@users.noreply.github.com
           commit_author: "apixbot (GHA // @apikusu/altstore) <228819170+apixbot@users.noreply.github.com>"

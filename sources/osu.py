@@ -56,7 +56,7 @@ def get_last_release_and_versions():
     response = requests.get(f"https://api.github.com/repos/{repo_author}/{repo_name}/releases/latest")
     if response.status_code == 200:
         latest_release = response.json()
-        version = latest_release["tag_name"].replace("-lazer", "")
+        version = latest_release["tag_name"]
         for asset in latest_release["assets"]:
             if "osu.iOS.ipa" in asset["name"]:
                 download_url = asset["browser_download_url"]
@@ -66,7 +66,7 @@ def get_last_release_and_versions():
                 print("Last release is", version)
                 new_version = {
                     "version": "1.0",
-                    "buildVersion": version,
+                    "buildVersion": version.replace("-lazer", ""),
                     "marketingVersion": version,
                     "date": update_time,
                     "downloadURL": download_url,

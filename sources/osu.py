@@ -46,7 +46,7 @@ def get_last_release_and_versions():
     versions = []
     # Try to read old versions from the existing index.json
     try:
-        with open('res/osu/index.json', 'r') as file:
+        with open('res/osu/index.json', 'r', encoding="utf-8") as file:
             local_source = json.load(file)
             if local_source["apps"] and local_source["apps"][0]["versions"]:
                 versions = local_source["apps"][0]["versions"]
@@ -137,6 +137,6 @@ try:
 except Exception as e:
     print(f"Failed querying osu!web API services: {e}")
 
-with open('res/osu/index.json', 'w') as file:
-    json.dump(source, file)
+with open('res/osu/index.json', 'w', encoding="utf-8") as file:
+    json.dump(source, file, ensure_ascii=False, indent=4)
     print("Created source file")

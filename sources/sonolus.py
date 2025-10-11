@@ -51,7 +51,7 @@ def get_last_version_and_versions():
     versions = []
     # Try to read old versions from the existing index.json
     try:
-        with open('res/sonolus/index.json', 'r') as file:
+        with open('res/sonolus/index.json', 'r', encoding="utf-8") as file:
             local_source = json.load(file)
             if local_source["apps"] and local_source["apps"][0]["versions"]:
                 versions = local_source["apps"][0]["versions"]
@@ -138,6 +138,6 @@ except Exception as e:
 app_info["versions"] = get_last_version_and_versions()
 source["apps"].append(app_info)
 
-with open('res/sonolus/index.json', 'w') as file:
-    json.dump(source, file)
+with open('res/sonolus/index.json', 'w', encoding="utf-8") as file:
+    json.dump(source, file, ensure_ascii=False)
     print("Created source file")

@@ -46,7 +46,7 @@ def get_last_release_and_versions():
     versions = []
     # Try to read old versions from the existing index.json
     try:
-        with open('res/osu/index.json', 'r') as file:
+        with open('res/osu/index.json', 'r', encoding="utf-8") as file:
             local_source = json.load(file)
             if local_source["apps"] and local_source["apps"][0]["versions"]:
                 versions = local_source["apps"][0]["versions"]
@@ -75,7 +75,7 @@ def get_last_release_and_versions():
                     "localizedDescription": changelog,
                 }
                 # Only prepend if not already present
-                if not any(v.get("buildVersion") == version for v in versions):
+                if not any(v.get("buildVersion") == version.replace("-lazer", "") for v in versions):
                     versions.insert(0, new_version)
                 return versions
         # If no iOS release found, just return old versions
@@ -137,6 +137,6 @@ try:
 except Exception as e:
     print(f"Failed querying osu!web API services: {e}")
 
-with open('res/osu/index.json', 'w') as file:
-    json.dump(source, file)
+with open('res/osu/index.json', 'w', encoding="utf-8") as file:
+    json.dump(source, file, ensure_ascii=False)
     print("Created source file")

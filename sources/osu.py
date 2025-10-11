@@ -75,7 +75,7 @@ def get_last_release_and_versions():
                     "localizedDescription": changelog,
                 }
                 # Only prepend if not already present
-                if not any(v.get("buildVersion") == version for v in versions):
+                if not any(v.get("buildVersion") == version.split('-')[0] for v in versions):
                     versions.insert(0, new_version)
                 return versions
         # If no iOS release found, just return old versions

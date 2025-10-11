@@ -75,7 +75,7 @@ def get_last_release_and_versions():
                     "localizedDescription": changelog,
                 }
                 # Only prepend if not already present
-                if not any(v.get("buildVersion") == version.split('-')[0] for v in versions):
+                if not any(v.get("buildVersion") == version.replace("-lazer", "") for v in versions):
                     versions.insert(0, new_version)
                 return versions
         # If no iOS release found, just return old versions
@@ -138,5 +138,5 @@ except Exception as e:
     print(f"Failed querying osu!web API services: {e}")
 
 with open('res/osu/index.json', 'w', encoding="utf-8") as file:
-    json.dump(source, file, ensure_ascii=False, indent=4)
+    json.dump(source, file, ensure_ascii=False)
     print("Created source file")

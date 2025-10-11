@@ -139,5 +139,5 @@ app_info["versions"] = get_last_version_and_versions()
 source["apps"].append(app_info)
 
 with open('res/sonolus/index.json', 'w', encoding="utf-8") as file:
-    json.dump(source, file, indent=4, ensure_ascii=False)
+    json.dump(source, file, ensure_ascii=False)
     print("Created source file")

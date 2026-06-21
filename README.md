@@ -15,16 +15,10 @@ An AltStore (and derivatives like SideStore) source to easily install the rhythm
 
 2. Go back to AltStore, and install **osu!** from either the Sources tab or the Browse tab.
 
-## Bonus
-
-- The source header background is rolling from osu!'s Seasonal Backgrounds,
-- Displays the latest 8 news posts from **osu!**'s official website.
-
 ## Thanks
 
 - [@d-dandrew/osu-altsource](https://github.com/d-dandrew/osu-altsource) for the osu! source.
 - [@ppy/osu](https://github.com/ppy/osu) for both osu! and assets used in this repository.
-- NonSpicyBurrito for making Sonolus.
 
 > Source icons are made using resources from:  
 > [@ppy/osu-web](https://github.com/ppy/osu-web) (`public/images/layout/{osu-lazer-logo-triangles, osu-lazer-logo-white}.svg`) for osu!  

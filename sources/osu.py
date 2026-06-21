@@ -1,4 +1,5 @@
-import requests, json, re
+import requests
+import json
 
 repo_author = "ppy"
 repo_name = "osu"
@@ -6,7 +7,7 @@ repo_name = "osu"
 source = {
     "name": "osu!",
     "subtitle": "rhythm is just a *click* away!",
-    "description": "An AltStore and derivatives source for the rhythm game osu!.\n\nSource made by apix and hosted at https://apikusu.github.io/altstore.\n\nUpdated daily at 00:30 and 12:30 UTC.\n",
+    "description": "An AltStore and derivatives source for the rhythm game osu!.\n\nSource hosted at https://apikusu.github.io/altstore.\n\nUpdated daily at 00:30 and 12:30 UTC.\n",
     "iconURL": "https://apikusu.github.io/altstore/osu/logo.png",
     "website": "https://osu.ppy.sh",
     "featuredApps": [
@@ -14,13 +15,14 @@ source = {
     ],
     "apps": [],
     "news": [],
+    "header_url": "https://raw.githubusercontent.com/ppy/osu-resources/refs/heads/master/osu.Game.Resources/Textures/Menu/menu-background-1.jpg"
 }
 
 app_info = {
     "name": "osu!",
     "bundleIdentifier": "sh.ppy.osulazer",
     "developerName": "osu! team & contributors",
-    "iconURL": "https://raw.githubusercontent.com/ppy/osu/refs/heads/master/osu.iOS/Assets.xcassets/AppIcon.appiconset/300076680-5cbe0121-ed68-414f-9ddc-dd993ac97e62.png",
+    "iconURL": "https://apikusu.github.io/altstore/osu/AppIcon.png",
     "tintColor": "F964A7",
     "category": "games",
     "subtitle": "A free-to-win rhythm game. Rhythm is just a *click* away!",
@@ -85,57 +87,8 @@ def get_last_release_and_versions():
         print(f"Failed to fetch the latest release: {response.status_code}")
         return versions
 
-def get_news():
-    response = requests.get("https://osu.ppy.sh/api/v2/news?limit=8")
-    if response.status_code == 200:
-        news = response.json()
-        news_items = source["news"]
-        for item in news["news_posts"]:
-            url = "https://osu.ppy.sh/home/news/" + item["slug"]
-            news_items.append({
-                "identifier": str(item["id"]),
-                "title": item["title"],
-                "caption": item["preview"],
-                "date": item["published_at"],
-                "imageURL": item.get("first_image@2x", item["first_image"]),
-                "appID": "sh.ppy.osulazer",
-                "url": url,
-                "tintColor": "302e38",
-            })
-        print("Got", len(news_items), "news")
-        return news_items
-    else:
-        print(f"Failed to fetch news: {response.status_code}")
-        return []
-
-def get_random_background():
-    # Fetch seasonal backgrounds from osu! API
-    import random
-    response = requests.get("https://osu.ppy.sh/api/v2/seasonal-backgrounds")
-    if response.status_code == 200:
-        rjson = response.json()
-        backgrounds_list = rjson["backgrounds"]
-        chosen_background = backgrounds_list[random.randint(0, len(backgrounds_list) - 1)]
-        data = {
-            "url": chosen_background["url"],
-            "artist_username": chosen_background["user"]["username"],
-            "artist_profile_link": "https://osu.ppy.sh/users/" + re.search(r'\/(\d+)\?', chosen_background["user"]["avatar_url"]).group(1)
-        }
-
-        source["headerURL"] = data["url"]
-        source["description"] += f"\nBanner/header:\n- Artist: {data['artist_username']} ({data['artist_profile_link']})\n- URL: {data['url']}"
-    else:
-        print(f"Failed to fetch seasonal backgrounds: {response.status_code}")
-    print("Got background", data["url"], "of user", data["artist_username"], data["artist_profile_link"])
-
 app_info["versions"] = get_last_release_and_versions()
 source["apps"].append(app_info)
-
-try:
-    get_random_background()
-    get_news()
-except Exception as e:
-    print(f"Failed querying osu!web API services: {e}")
 
 with open('res/osu/index.json', 'w', encoding="utf-8") as file:
     json.dump(source, file, ensure_ascii=False)
